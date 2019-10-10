@@ -1,5 +1,3 @@
-
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,15 +20,15 @@ import javafx.stage.Stage;
 public class RPS2 extends Application
 {
     // The Rock-Paper-Scissors Match
-    // private RPSMatch rpsMatch;
+    private RPSMatch rpsMatch;
     
     // Labels for displaying the win counts
     private Label lblPlayerWins =       new Label("Human Wins");
     private Label lblComputerWins =     new Label("Computer Wins");
     private Label lblTies =             new Label("Ties");
     private Label lblStatus1 =          new Label("Choose Rock, Paper, or Scissors");
-    private Label lblStatus2 =          new Label("");
-    private Label lblStatus3 =          new Label("");
+    private Label lblStatus2 =          new Label("label 2");
+    private Label lblStatus3 =          new Label("label 3");
     private Label lblHeader =           new Label("Results:");
     private Label lblPlayerWinCount =   new Label("0");
     private Label lblComputerWinCount = new Label("0");
@@ -93,14 +91,6 @@ public class RPS2 extends Application
         grid.add(matchStatusLabels, 1, 2);
         grid.add(matchStatus, 2, 2);
 
-        /* 
-        // Add the button and label into the pane
-        pane.add(btnChooseRock, 0, 0);
-        pane.add(btnChoosePaper, 1, 0);
-        pane.add(btnChooseScissors, 2, 0);
-        pane.add(lblStatus, 1, 1);
-        
-        */
        
         //set an action on the button using method reference
         btnChooseRock.setOnAction(this::rockClick);
@@ -123,9 +113,13 @@ public class RPS2 extends Application
      */
     private void rockClick(ActionEvent event)
     {
-        //rpsMatch.setHumanPlay("rock");
+        System.out.println("you have chosen Rock ");
+        rpsMatch.setHumanSign(RPSMatch.ROCK);
         lblStatus1.setText ("You have chosen Rock      ");
+        rpsMatch.setCompSign();
+        lblStatus2.setText ("Opponent has chosen " + rpsMatch.getCompText());
         
+        rpsMatch.getResult();
         updateScores();
     }
     
@@ -135,32 +129,35 @@ public class RPS2 extends Application
      */
     private void paperClick(ActionEvent event)
     {
-        //rpsMatch.setHumanPlay("paper");
+        rpsMatch.setHumanSign(RPSMatch.PAPER);
         lblStatus1.setText ("You have chosen Paper     ");
-               
-        updateScores();
+        rpsMatch.setCompSign();
+        lblStatus2.setText ("Opponent has chosen " + rpsMatch.getCompText());
 
+        rpsMatch.getResult();
+        updateScores();
     }
 
     /**
-     * This will be executed when the player clicks the "Rock" button
+     * This will be executed when the player clicks the "Scissors" button
      * 
      */
     private void scissorsClick(ActionEvent event)
     {
-        //rpsMatch.setHumanPlay("scissors");
+        rpsMatch.setHumanSign(RPSMatch.SCISSORS);
         lblStatus1.setText ("You have chosen Scissors  ");
-
+        rpsMatch.setCompSign();
+        lblStatus2.setText ("Opponent has chosen " + rpsMatch.getCompText());
+        
+        rpsMatch.getResult();
         updateScores();
-
     }
 
     private void updateScores()
     {
-    //    lblPlayerWinCount.setText("" + rpsMatch.getHumanWins());
-    //    lblComputerWinCount.setText("" + rpsMatch.getComputerWins());
-    //    lblTieCount.setText("" + rpsMatch.getTies());
-
+        lblPlayerWinCount.setText("" + rpsMatch.getHumanWins());
+        lblComputerWinCount.setText("" + rpsMatch.getCompWins());
+        lblTieCount.setText("" + rpsMatch.getTies());
     }
     
 }
