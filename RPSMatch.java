@@ -13,6 +13,7 @@ public class RPSMatch
     private int compWins;
     private int humanWins;
     private int ties;
+    public int cheating;
     public static final int ROCK = 0;
     public static final int PAPER = 1;
     public static final int SCISSORS = 2;
@@ -44,7 +45,28 @@ public class RPSMatch
       
     public void setCompSign()
     {
-        compSign = (int)(Math.random() * 3);
+        cheating = (int)(Math.random() * 2); //computer cheats randomly, about half the time
+        if (cheating == 0)
+        {
+            compSign = (int)(Math.random() * 3);
+            //computer does not cheat and chooses randomly
+        }
+        else
+        {
+            if (humanSign == 0)
+            {
+                compSign = 1;
+            }
+            else if (humanSign == 1)
+            {
+                compSign = 2;
+            }
+            else
+            {
+                compSign = 0;
+            }
+            //computer cheats and chooses whatever beats humanSign
+        }
     }
     
     public String getCompText()

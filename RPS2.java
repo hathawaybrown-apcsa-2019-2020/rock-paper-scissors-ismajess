@@ -27,8 +27,8 @@ public class RPS2 extends Application
     private Label lblComputerWins =     new Label("Computer Wins");
     private Label lblTies =             new Label("Ties");
     private Label lblStatus1 =          new Label("Choose Rock, Paper, or Scissors");
-    private Label lblStatus2 =          new Label("label 2");
-    private Label lblStatus3 =          new Label("label 3");
+    private Label lblStatus2 =          new Label("");
+    private Label lblStatus3 =          new Label("");
     private Label lblHeader =           new Label("Results:");
     private Label lblPlayerWinCount =   new Label("0");
     private Label lblComputerWinCount = new Label("0");
@@ -39,7 +39,7 @@ public class RPS2 extends Application
     public void start(Stage stage) throws Exception
     {
         // Start the match
-        // rpsMatch = new RPSMatch();
+        rpsMatch = new RPSMatch();
         
         // Create a Button or any control item
         Button btnChooseRock =     new Button("Rock");
@@ -121,6 +121,15 @@ public class RPS2 extends Application
         
         rpsMatch.getResult();
         updateScores();
+        
+        if (rpsMatch.cheating == 0)
+        {
+            lblStatus3.setText ("nothing to see here");
+        }
+        else
+        {
+            lblStatus3.setText ("hee hee");
+        }
     }
     
     /**
@@ -136,6 +145,15 @@ public class RPS2 extends Application
 
         rpsMatch.getResult();
         updateScores();
+        
+        if (rpsMatch.cheating == 0)
+        {
+            lblStatus3.setText ("nothing to see here");
+        }
+        else
+        {
+            lblStatus3.setText ("hee hee");
+        }
     }
 
     /**
@@ -151,6 +169,15 @@ public class RPS2 extends Application
         
         rpsMatch.getResult();
         updateScores();
+        
+        if (rpsMatch.cheating == 0)
+        {
+            lblStatus3.setText ("nothing to see here");
+        }
+        else
+        {
+            lblStatus3.setText ("hee hee");
+        }
     }
 
     private void updateScores()
@@ -159,5 +186,4 @@ public class RPS2 extends Application
         lblComputerWinCount.setText("" + rpsMatch.getCompWins());
         lblTieCount.setText("" + rpsMatch.getTies());
     }
-    
 }
